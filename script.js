@@ -6,14 +6,14 @@ let disbleDeck = false;
 
 function flipCard(e) {
     let clickedCard = e.target; //getting user clicked card
-    if (clickedCard !== cardOne) {
+    if (clickedCard !== cardOne && !disbleDeck) {
         clickedCard.classList.add("flip");
         if (!cardOne) {
             //return the cardOne value to clickedCard
             return cardOne = clickedCard;
         }
         cardTwo = clickedCard;
-
+        disbleDeck = true;
         let cardOneImg = cardOne.querySelector("img").src,
             cardTwoImg = cardTwo.querySelector("img").src;
         matchCards(cardOneImg, cardTwoImg);
@@ -25,7 +25,7 @@ function matchCards(immg1, img2) {
         cardOne.removeEventListener("click", flipCard);
         cardTwo.removeEventListener("click", flipCard);
         cardOne = cardTwo = ""; // setting both card value to blank
-        return;
+        return disbleDeck = false;
     }
     // if two card not matched
     setTimeout(() => {
@@ -39,6 +39,7 @@ function matchCards(immg1, img2) {
         cardOne.classList.remove("shake");
         cardTwo.classList.remove("shake");
         cardOne = cardTwo = ""; // setting both card value to blank
+        disbleDeck = false;
     }, 1200);
 
 }
