@@ -34,6 +34,13 @@ function matchCards(immg1, img2) {
         cardTwo.classList.add("shake");
     }, 400);
 
+    setTimeout(() => {
+        // removing both shake & flip classes from the both card after 1200ms
+        cardOne.classList.remove("shake");
+        cardTwo.classList.remove("shake");
+        cardOne = cardTwo = ""; // setting both card value to blank
+    }, 1200);
+
 }
 
 cards.forEach(card => { // adding click event to all cards
